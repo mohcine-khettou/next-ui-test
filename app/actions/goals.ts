@@ -1,5 +1,6 @@
 "use server";
 
+import { unstable_noStore as noStore } from "next/cache";
 import connectDB from "../lib/mongoose";
 import MacroGoal from "../models/MacroGoal";
 import MicroGoal from "../models/MicroGoal";
@@ -10,6 +11,7 @@ import type {
 
 // Macro Goals Actions
 export async function getMacroGoals(): Promise<MacroGoalType[]> {
+  noStore(); // Disable caching for this function
   try {
     await connectDB();
     const goals = await MacroGoal.find({}).sort({ createdAt: -1 }).lean();
@@ -119,6 +121,7 @@ export async function deleteMacroGoal(id: string): Promise<boolean> {
 
 // Micro Goals Actions
 export async function getMicroGoals(): Promise<MicroGoalType[]> {
+  noStore(); // Disable caching for this function
   try {
     await connectDB();
     const goals = await MicroGoal.find({}).sort({ createdAt: -1 }).lean();

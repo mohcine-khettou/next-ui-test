@@ -61,6 +61,9 @@ import type { MacroGoal, MicroGoal } from "./types/goals";
 import { Tab, Tabs } from "@heroui/react";
 import GoalsTabs from "./components/goals-tabs";
 
+// Force dynamic rendering to disable caching
+export const dynamic = "force-dynamic";
+
 function calculateMacroCompletion(
   macroId: string,
   macroGoals: MacroGoal[],

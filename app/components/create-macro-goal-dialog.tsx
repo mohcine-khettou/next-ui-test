@@ -16,10 +16,12 @@ import {
 } from "@heroui/react";
 import { createMacroGoal } from "../actions/goals";
 import { Plus } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const GOAL_ICONS = ["🎯", "💻", "📚", "🏋️", "🎨", "🚀", "⚡", "🔥"];
 
 export default function CreateMacroGoalDialog() {
+  const router = useRouter();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -52,7 +54,8 @@ export default function CreateMacroGoalDialog() {
           icon: "🎯",
         });
         onOpenChange();
-        window.location.reload();
+        // window.location.reload();
+        router.refresh();
       }
     } finally {
       setLoading(false);
